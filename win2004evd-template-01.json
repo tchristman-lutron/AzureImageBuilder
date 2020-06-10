@@ -18,10 +18,10 @@
 
     "resources": [
       {
-    "name": "win2004evdTemplate01",
+    "name": "[parameters('imageTemplateName')]",
     "type": "Microsoft.VirtualMachineImages/imageTemplates",
-    "apiVersion": "2019-05-01-preview",
-    "location": "EastUS",
+    "apiVersion": "[parameters('api-version')]",
+    "location": "[parameters('svclocation')]",
     "dependsOn": [],
     "tags": {
         "imagebuilderTemplate": "win2004evd",
@@ -41,7 +41,6 @@
         "vmProfile": 
                 {
                 "vmSize": "Standard_D2s_v3",
-                "osDiskSizeGB": 80
                 },
         
         "source": {
@@ -80,26 +79,7 @@
                                 ],
                     "updateLimit": 20
                 }
-            {
-                "type": "WindowsRestart",
-                "restartCheckCommand": "echo Azure-Image-Builder-Restarted-the-VM  > c:\\buildArtifacts\\azureImageBuilderRestart.txt",
-                "restartTimeout": "5m"
-            },
-                {
-                    "type": "WindowsUpdate",
-                    "searchCriteria": "IsInstalled=0",
-                    "filters": [
-                        "exclude:$_.Title -like '*Preview*'",
-                        "include:$true"
-                                ],
-                    "updateLimit": 20
-                }
-            {
-                "type": "WindowsRestart",
-                "restartCheckCommand": "echo Azure-Image-Builder-Restarted-the-VM  > c:\\buildArtifacts\\azureImageBuilderRestart.txt",
-                "restartTimeout": "5m"
-            },
-{
+			{
                 "type": "PowerShell",
                 "name": "RemoveApps",
                 "runElevated": true,
