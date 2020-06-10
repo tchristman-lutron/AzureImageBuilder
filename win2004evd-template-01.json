@@ -60,26 +60,23 @@
                 "scriptUri": "https://raw.githubusercontent.com/shawntmeyer/WVD/master/Image-Build/Customizations/Prepare-WVDImage.ps1 -Office365Install $true -EmailCacheTime "Not Configured" -CalendarSync "Not Configured" -CalendarSyncMonths "Not Configured" -OneDriveInstall $true -FSLogixInstall $true -TeamsInstall $true -EdgeInstall $true"
             },
             {
-                "type": "WindowsRestart",
-                "restartCheckCommand": "echo Azure-Image-Builder-Restarted-the-VM  > c:\\buildArtifacts\\azureImageBuilderRestart.txt",
-                "restartTimeout": "5m"
+                "type": "File",
+                "name": "downloadAppsScript",
+                "sourceUri": "https://raw.githubusercontent.com/tchristman-lutron/AzureImageBuilder/master/RemoveApps/Remove-Apps.ps1",
+                "destination":"c:\\buildArtifacts\\Remove-Apps.ps1"
             },
             {
                 "type": "File",
-                "name": "downloadBuildArtifacts",
-                "sourceUri": "https://raw.githubusercontent.com/danielsollondon/azvmimagebuilder/master/quickquickstarts/exampleArtifacts/buildArtifacts/index.html",
-                "destination":"c:\\buildArtifacts\\index.html"
+                "name": "downloadAppsXml",
+                "sourceUri": "https://raw.githubusercontent.com/tchristman-lutron/AzureImageBuilder/master/RemoveApps/RemoveApps.xml",
+                "destination":"c:\\buildArtifacts\\RemoveApps.xml"
             },
-
             {
-                "type": "PowerShell",
-                "name": "settingUpMgmtAgtPath",
-                "runElevated": false,
-                "inline": [
-                    "mkdir c:\\buildActions",
-                    "echo Azure-Image-Builder-Was-Here  > c:\\buildActions\\buildActionsOutput.txt"
-                ]
-                },
+                "type": "File",
+                "name": "downloadAppsXml2",
+                "sourceUri": "https://raw.githubusercontent.com/tchristman-lutron/AzureImageBuilder/master/RemoveApps/RemoveCapabilities.xml",
+                "destination":"c:\\buildArtifacts\\RemoveCapabilities.xml"
+            },
                 {
                     "type": "WindowsUpdate",
                     "searchCriteria": "IsInstalled=0",
@@ -89,11 +86,30 @@
                                 ],
                     "updateLimit": 20
                 }
+            {
+                "type": "WindowsRestart",
+                "restartCheckCommand": "echo Azure-Image-Builder-Restarted-the-VM  > c:\\buildArtifacts\\azureImageBuilderRestart.txt",
+                "restartTimeout": "5m"
+            },
+                {
+                    "type": "WindowsUpdate",
+                    "searchCriteria": "IsInstalled=0",
+                    "filters": [
+                        "exclude:$_.Title -like '*Preview*'",
+                        "include:$true"
+                                ],
+                    "updateLimit": 20
+                }
+            {
+                "type": "WindowsRestart",
+                "restartCheckCommand": "echo Azure-Image-Builder-Restarted-the-VM  > c:\\buildArtifacts\\azureImageBuilderRestart.txt",
+                "restartTimeout": "5m"
+            },
 {
                 "type": "PowerShell",
                 "name": "RemoveApps",
                 "runElevated": true,
-                "scriptUri": "https://raw.githubusercontent.com/shawntmeyer/Windows-as-a-Service/master/RemoveApps/Remove-Apps.ps1"
+                "scriptUri": "https://raw.githubusercontent.com/tchristman-lutron/AzureImageBuilder/master/RemoveApps/Remove-Apps.ps1"
             },
         ],
         "distribute": 
