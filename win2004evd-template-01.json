@@ -57,7 +57,7 @@
                 "type": "PowerShell",
                 "name": "PrepareWVDImage",
                 "runElevated": true,
-                "scriptUri": "https://raw.githubusercontent.com/shawntmeyer/WVD/master/Image-Build/Customizations/Prepare-WVDImage.ps1 -Office365Install $true -EmailCacheTime 'Not Configured' -CalendarSync 'Not Configured' -CalendarSyncMonths 'Not Configured' -OneDriveInstall $true -FSLogixInstall $true -TeamsInstall $true -EdgeInstall $true"
+                "scriptUri": "https://raw.githubusercontent.com/shawntmeyer/WVD/master/Image-Build/Customizations/Prepare-WVDImage.ps1 -Office365Install $true -OneDriveInstall $true -FSLogixInstall $true -TeamsInstall $true -EdgeInstall $true"
             },
             {
                 "type": "File",
