@@ -18,10 +18,10 @@
 
     "resources": [
       {
-    "name": "[parameters('imageTemplateName')]",
+    "name": "win2004evdTemplate01",
     "type": "Microsoft.VirtualMachineImages/imageTemplates",
-    "apiVersion": "[parameters('api-version')]",
-    "location": "[parameters('svclocation')]",
+    "apiVersion": "2019-05-01-preview",
+    "location": "EastUS",
     "dependsOn": [],
     "tags": {
         "imagebuilderTemplate": "win2004evd",
@@ -41,7 +41,7 @@
         "vmProfile": 
                 {
                 "vmSize": "Standard_D2s_v3",
-                "osDiskSizeGB": 127
+                "osDiskSizeGB": 80
                 },
         
         "source": {
