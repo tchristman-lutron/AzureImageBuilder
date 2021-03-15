@@ -33,19 +33,19 @@ Write-Output "Creating '$BuildDir'"
 $null = New-Item -Path "$BuildDir" -ItemType Directory -Force -ErrorAction SilentlyContinue
 Write-Output "Downloading the WVD Image Prep Script from the 'http://www.github.com/tchristman-lutron/AzureImageBuilder' repo."
 $AIBRepoURL = "https://github.com/tchristman-lutron/AzureImageBuilder/archive/master.zip"
-$AIBRepoZip= "$BuildDir\AIB-Master.zip"
+$AIBRepoZip= "$BuildDir\AzureImageBuilder-Master.zip"
 Write-Output "Downloading '$AIBRepoURL' to '$AIBRepoZip'."
 Invoke-WebRequest -Uri $AIBRepoURL -outfile $AIBRepoZip -UseBasicParsing
 Expand-Archive -Path $AIBRepoZip -DestinationPath $BuildDir
 Remove-Item -Path $AIBRepoZip -Force -ErrorAction SilentlyContinue
-$ScriptPath = "$BuildDir\AIB-Master\Customize"
+$ScriptPath = "$BuildDir\AzureImageBuilder-Master\Customize"
 Write-Output "Now calling 'Prepare-WVDImage.ps1'"
 # & "$ScriptPath\Prepare-WVDImage.ps1" -RemoveApps $False -Office365Install $Office365Install
 & "$ScriptPath\Prepare-WVDImage.ps1" -Office365Install $Office365Install
 Write-Output "Finished 'Prepare-WVDImage.ps1'."
 
 # Run Virtual Desktop Optimization Tool from the copy in AIB-Master
-$ScriptPath = "$BuildDir\AIB-Master\Optimize"
+$ScriptPath = "$BuildDir\AzureImageBuilder-Master\Optimize"
 #Write-Output "Staging the Virtual Desktop Optimization Tool at '$ScriptPath'."
 Write-Output "Removing AppXPackages.json file to prevent appx removal. Already completed."
 $AppxPackagesConfigFileFullName = "$scriptPath\$WindowsVersion\ConfigurationFiles\AppxPackages.json"
