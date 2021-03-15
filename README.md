@@ -1,6 +1,5 @@
 # AzureImageBuilder
-AIB Templates
-
+Create and Execute AIB template to build a customized and optimized WVD image.
 Bits borrowed and customized from these guys...
 
 https://github.com/shawntmeyer/WVD
