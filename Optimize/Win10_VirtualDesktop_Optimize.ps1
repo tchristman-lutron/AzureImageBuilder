@@ -355,8 +355,8 @@ PROCESS {
     # Also sweep and delete *.tmp, *.etl, *.evtx, *.log, *.dmp, thumbcache*.db (not in use==not needed)
     # 5/18/20: Removing Disk Cleanup and moving some of those tasks to the following manual cleanup
     If ($DiskCleanup) {
-        Write-Verbose "Removing .tmp, .etl, .evtx, thumbcache*.db, *.log files not in use"
-        Get-ChildItem -Path c:\ -Include *.tmp, *.dmp, *.etl, *.evtx, thumbcache*.db, *.log -File -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -ErrorAction SilentlyContinue
+        #Write-Verbose "Removing .tmp, .etl, .evtx, thumbcache*.db, *.log files not in use"
+        #Get-ChildItem -Path c:\ -Include *.tmp, *.dmp, *.etl, *.evtx, thumbcache*.db, *.log -File -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -ErrorAction SilentlyContinue
 
         # Delete "RetailDemo" content (if it exits)
         Write-Verbose "Removing Retail Demo content (if it exists)"
