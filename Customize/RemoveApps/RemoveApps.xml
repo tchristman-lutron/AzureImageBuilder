@@ -22,11 +22,11 @@ Microsoft.SkypeApp
 Microsoft.Wallet
 # Microsoft.WebMediaExtensions
 # Microsoft.Windows.Photos
-# Microsoft.WindowsAlarms
+Microsoft.WindowsAlarms
 # Microsoft.WindowsCalculator
-# Microsoft.WindowsCamera
+Microsoft.WindowsCamera
 microsoft.windowscommunicationsapps
-Microsoft.WindowsFeedbackHub
+# Microsoft.WindowsFeedbackHub
 Microsoft.WindowsMaps
 Microsoft.WindowsSoundRecorder
 # Microsoft.WindowsStore
