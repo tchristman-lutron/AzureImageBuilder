@@ -52,7 +52,7 @@ Param
 
     # Install OneDrive per-machine
     [Parameter(ParameterSetName = 'Automation', Mandatory = $false)]
-    [bool]$OneDriveInstall = $true,
+    [bool]$OneDriveInstall = $false,
 
     #Azure Active Directory TenantID
     [Parameter(ParameterSetName = 'Automation', Mandatory = $false)]
@@ -68,7 +68,7 @@ Param
 
     #Install Microsoft Teams in the Per-Machine configuration. Update the $TeamsURL variable to point to the latest version as needed.
     [Parameter(ParameterSetName = 'Automation', Mandatory = $false)]
-    [bool]$TeamsInstall = $true,
+    [bool]$TeamsInstall = $false,
 
     #Install Microsoft Edge Chromium. Update $EdgeURL variable to point to latest version as needed.
     [Parameter(ParameterSetName = 'Automation', Mandatory = $false)]
