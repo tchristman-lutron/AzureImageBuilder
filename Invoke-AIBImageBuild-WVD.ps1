@@ -69,13 +69,13 @@ If (Test-Path $TextFile) {
 }
 # Script Updates
 $WVDOptimizeScriptName = (Get-ChildItem $ScriptPath | Where-Object {$_.Name -like '*optimize*.ps1'}).Name
-<#
-Write-Output "Adding the '-NoRestart' switch to the Set-NetAdapterAdvancedProperty line in '$WVDOptimizeScriptName' to prevent the network adapter restart from killing AIB."
+
+# Write-Output "Adding the '-NoRestart' switch to the Set-NetAdapterAdvancedProperty line in '$WVDOptimizeScriptName' to prevent the network adapter restart from killing AIB."
 $WVDOptimizeScriptFile = Join-Path -Path $ScriptPath -ChildPath $WVDOptimizeScriptName
-(Get-Content $WVDOptimizeScriptFile) | ForEach-Object { if (($_ -like 'Set-NetAdapterAdvancedProperty*') -and ($_ -notlike '*-NoRestart*')) { $_ -replace "$_", "$_ -NoRestart" } else { $_ } } | Set-Content $WVDOptimizeScriptFile
-Write-Output "Removing the possibly invasive disk cleanup routine starting at c:\"
-(Get-Content $WVDOptimizeScriptFile) | ForEach-Object { if ($_ -like 'Get-ChildItem -Path c:\ -include*') { "# $_" } else { $_ } } | Set-Content $WVDOptimizeScriptFile
-#>
+#(Get-Content $WVDOptimizeScriptFile) | ForEach-Object { if (($_ -like 'Set-NetAdapterAdvancedProperty*') -and ($_ -notlike '*-NoRestart*')) { $_ -replace "$_", "$_ -NoRestart" } else { $_ } } | Set-Content $WVDOptimizeScriptFile
+#Write-Output "Removing the possibly invasive disk cleanup routine starting at c:\"
+#(Get-Content $WVDOptimizeScriptFile) | ForEach-Object { if ($_ -like 'Get-ChildItem -Path c:\ -include*') { "# $_" } else { $_ } } | Set-Content $WVDOptimizeScriptFile
+
 Write-Output "Now calling '$WVDOptimizeScriptName'."
 & "$WVDOptimizeScriptFile" -WindowsVersion $WindowsVersion -Verbose
 Write-Output "Completed $WVDOptimizeScriptName."
